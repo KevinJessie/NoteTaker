@@ -2,7 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 3000;
 const db = require('./db/db.json');
+
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
@@ -46,6 +49,30 @@ app.get('*', (req, res) => {
 }
 );
 
-app.listen(Process.env.PORT || 3000);
+app.listen(PORT, () => {
+    console.log(`App listening on PORT ${PORT}`);
+}
+
+);
+
+function deleteNote (id) {
+    return fetch(`/api/notes/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+}
+
+
+
+  
+
+
+
+
+
+
+
 
 
