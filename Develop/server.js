@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const app = express();
-const PORT = 3000;
 const db = require('./db/db.json');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -47,10 +46,6 @@ app.get('*', (req, res) => {
 }
 );
 
-app.listen(PORT, () => {
-    console.log(`App listening on PORT ${PORT}`);
-}
-);
-
+app.listen(Process.env.PORT || 3000);
 
 
